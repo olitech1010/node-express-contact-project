@@ -1,20 +1,17 @@
 import express from "express"
-import dotenv from "dotenv"
+import  dotenv from "dotenv"
+import contactRoutes from "./routes/contactRoutes.js";
 
-dotenv.config()
+
+dotenv.config();
 
 const app = express();
 
 const port = process.env.PORT  ||  5000;
 
-app.use(express.json())
+app.use(express.json());
 
-app.get("/api/contacts", (req, res) => {
-    res.status(200).json({
-        message: "Get all contacts"
-    });
-    
-});
+app.use("/api/contacts", contactRoutes);
 
 app.listen(port, () => {
     console.log(`app is listening on port ${port}`);
