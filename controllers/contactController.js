@@ -1,24 +1,27 @@
+import expressAsyncHandler from "express-async-handler";
+
 //@desc Get all conntacts
 //@route Get /api/contacts
 //@access public
-const getContacts = (req, res) => {
+const getContacts = expressAsyncHandler(async (req, res) => {
     res.status(200).json({
         message: "Get all contacts"
     });
-}
+});
 
 //@desc Get  conntact
 //@route Get /api/contacts/:id
 //@access public
-const getContact = (req, res) => {
+const getContact = expressAsyncHandler(async (req, res) => {
     res.status(200).json({
-        message : `Get Contaact for ${req.params.id}`
+        message: `Get Contaact for ${req.params.id}`
     })
-}
+});
+
 //@desc create  conntact
 //@route POST /api/contacts/:id
 //@access public
-const createContact = (req, res) => {
+const createContact = expressAsyncHandler(async (req, res) => {
     const requestBody = req.body
     const { name, email, phone } = requestBody
     if (!name || !email || !phone) {
@@ -28,26 +31,26 @@ const createContact = (req, res) => {
     }
     console.log(requestBody)
     res.status(201).json({
-        message : "Create contact"
+        message: "Create contact"
     })
-}
+});
 
 //@desc update  conntact
 //@route put /api/contacts/:id
 //@access public
-const updateContact = (req, res) => {
+const updateContact = expressAsyncHandler(async (req, res) => {
     res.status(200).json({
-        message : `Update Contaact for ${req.params.id}`
+        message: `Update Contaact for ${req.params.id}`
     })
-}
+});
 //@desc delete  conntact
 //@route delete /api/contacts/:id
 //@access public
-const deleteContact = (req, res) => {
+const deleteContact = expressAsyncHandler(async (req, res) => {
     res.status(200).json({
-        message : `Delete Contaact for ${req.params.id}`
+        message: `Delete Contaact for ${req.params.id}`
     })
-}
+});
 
 export  {
     getContacts,
