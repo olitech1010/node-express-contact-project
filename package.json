@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/olitech1010/node-express-contact-project#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-async-handler": "^1.2.0",
