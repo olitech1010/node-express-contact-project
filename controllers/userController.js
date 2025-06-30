@@ -12,15 +12,23 @@ const registerUser = expressAsyncHandler(async (req, res) => {
         throw new Error("All fields are required")
     }
 
-    const userAvailable = User.findOne(email)
+    const userAvailable = await User.findOne({email})
     if (userAvailable) {
         res.status(400)
         throw new Error('User already registered')
     }
-    const hashedPassword = bcrypt(10, password)
-    const registeredUser = await User.create({ name, username, email, password:hashedPassword })
-    res.status(201).json(registeredUser)
-})
+    try {
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const user = await User.create({ name, username, email, password:hashedPassword })
+    res.status(201).json({_id:user.id, name:user.name, username:user.username, eemail:user.email})
+        
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+
+    })
+    
+
 
 //@desc find All Users
 //@route get /api/users/
@@ -66,7 +74,12 @@ const updateUser = expressAsyncHandler(async (res, req) => {
 //@access private 
 
 const deleteUser = expressAsyncHandler(async (req, res) => {
-    
+    const deletedUser = await User.findByIdAndDelete(req.params.id)
+    if (!deletedUser) {
+        res.status(404)
+        throw new Error('User not found')
+    }
+    res.status(201).json(deletedUser)
 })
 
 
