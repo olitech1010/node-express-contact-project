@@ -27,7 +27,21 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     }
 
     })
+
+//@desc Log in user
+//@route get /api/users/:id
+//@access private 
+const loginUser = expressAsyncHandler(async (req, res) => {
     
+})
+
+
+//@desc Logout user
+//@route get /api/users/:id
+//@access private 
+const logotUser = expressAsyncHandler(async (req, res) => {
+    
+})
 
 
 //@desc find All Users
@@ -84,4 +98,4 @@ const deleteUser = expressAsyncHandler(async (req, res) => {
 
 
 
-export {registerUser, getAllUsers, getUser, updateUser, deleteUser }
+export {registerUser, loginUser, logotUser, getAllUsers, getUser, updateUser, deleteUser }

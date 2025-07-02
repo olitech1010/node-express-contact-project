@@ -1,7 +1,7 @@
 import express from 'express';
 
 const router = express.Router();
-import { registerUser, getUser, getAllUsers, updateUser, deleteUser } from '../controllers/userController.js';
+import { registerUser, loginUser, getUser, getAllUsers, updateUser, deleteUser } from '../controllers/userController.js';
 
 router.route("/")
     .get(getAllUsers)
